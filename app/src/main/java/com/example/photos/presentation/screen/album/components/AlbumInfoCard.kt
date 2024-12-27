@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -51,14 +52,17 @@ fun AlbumInfoCard(photo: AlbumItemEntity, modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = photo.photo?.title ?: "",
+                    style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = photo.album.title,
+                    style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = photo.user?.username ?: "",
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }

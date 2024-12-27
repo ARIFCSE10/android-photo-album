@@ -96,8 +96,7 @@ dependencies {
     testImplementation(libs.androidx.core.testing)
     // Core library
     androidTestImplementation(libs.androidx.core)
-    implementation(libs.lottie.compose)
-    implementation(libs.shimmer.compose)
+
 // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
@@ -118,6 +117,7 @@ dependencies {
     implementation(libs.mockito.kotlin)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.test)
+
     //Hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.compiler)
@@ -132,10 +132,12 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.converter.scalars)
     implementation(libs.encrypted.preferences)
+
     //Glide
     implementation(libs.landscapist.glide)
 
     implementation(libs.androidx.navigation.compose)
+
     //room
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
