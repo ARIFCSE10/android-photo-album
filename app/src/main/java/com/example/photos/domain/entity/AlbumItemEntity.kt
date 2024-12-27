@@ -7,7 +7,7 @@ import com.example.photos.domain.model.Photo
 import com.example.photos.domain.model.User
 
 @Entity(tableName = "album_cache")
-data class AlbumCacheEntity(
+data class AlbumItemEntity(
     @PrimaryKey val id: Int,
     val album: Album,
     val user: User?,

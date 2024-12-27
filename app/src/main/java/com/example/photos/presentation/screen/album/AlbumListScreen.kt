@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.photos.domain.entity.AlbumCacheEntity
+import com.example.photos.domain.entity.AlbumItemEntity
 import com.example.photos.domain.model.Album
 import com.example.photos.domain.model.Photo
 import com.example.photos.domain.model.User
@@ -103,7 +103,7 @@ fun PhotoListPreview() {
 }
 
 internal val mockPhotoItems = listOf(
-    AlbumCacheEntity(
+    AlbumItemEntity(
         id = 1,
         photo = Photo(
             id = 1,
@@ -123,7 +123,7 @@ internal val mockPhotoItems = listOf(
             username = "useName1"
         )
     ),
-    AlbumCacheEntity(
+    AlbumItemEntity(
         id = 2,
         photo = Photo(
             id = 2,

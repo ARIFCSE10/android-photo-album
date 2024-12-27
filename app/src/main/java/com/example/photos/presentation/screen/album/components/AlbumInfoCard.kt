@@ -17,11 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.photos.domain.entity.AlbumCacheEntity
+import com.example.photos.domain.entity.AlbumItemEntity
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun AlbumInfoCard(photo: AlbumCacheEntity, modifier: Modifier = Modifier) {
+fun AlbumInfoCard(photo: AlbumItemEntity, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .fillMaxWidth()

@@ -3,12 +3,12 @@ package com.example.photos.di
 import android.app.Application
 import androidx.room.Room
 import com.example.photos.common.Constants
-import com.example.photos.data.local.AlbumCacheDB
+import com.example.photos.data.local.LocalCacheDB
 import com.example.photos.data.remote.PlaceHolderApi
-import com.example.photos.data.repository.AlbumCacheRepositoryImpl
-import com.example.photos.data.repository.AlbumRepositoryImpl
-import com.example.photos.domain.repository.AlbumCacheRepository
-import com.example.photos.domain.repository.AlbumRepository
+import com.example.photos.data.repository.LocalRepositoryImpl
+import com.example.photos.data.repository.RemoteRepositoryImpl
+import com.example.photos.domain.repository.LocalRepository
+import com.example.photos.domain.repository.RemoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,20 +38,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAlbumRepository(api: PlaceHolderApi): AlbumRepository {
-        return AlbumRepositoryImpl(api)
+    fun provideRemoteRepository(api: PlaceHolderApi): RemoteRepository {
+        return RemoteRepositoryImpl(api)
     }
 
     @Provides
     @Singleton
-    fun providesAlbumCacheDB(app: Application): AlbumCacheDB {
-        return Room.databaseBuilder(app, AlbumCacheDB::class.java, AlbumCacheDB.DATABASE_NAME)
+    fun providesLocalCacheDB(app: Application): LocalCacheDB {
+        return Room.databaseBuilder(app, LocalCacheDB::class.java, LocalCacheDB.DATABASE_NAME)
             .build()
     }
 
     @Provides
     @Singleton
-    fun providesAlbumCacheRepository(albumCacheDB: AlbumCacheDB): AlbumCacheRepository {
-        return AlbumCacheRepositoryImpl(albumCacheDB.albumCacheDao)
+    fun providesLocalRepository(localCacheDB: LocalCacheDB): LocalRepository {
+        return LocalRepositoryImpl(localCacheDB.localRepositoryDao)
     }
 }

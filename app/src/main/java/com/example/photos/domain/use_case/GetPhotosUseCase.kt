@@ -1,9 +1,9 @@
 package com.example.photos.domain.use_case
 
 import com.example.photos.common.Resource
-import com.example.photos.data.remote.dto.toAlbum
-import com.example.photos.domain.model.Album
-import com.example.photos.domain.repository.AlbumRepository
+import com.example.photos.data.remote.dto.toPhoto
+import com.example.photos.domain.model.Photo
+import com.example.photos.domain.repository.RemoteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -11,16 +11,13 @@ import java.io.IOException
 import javax.inject.Inject
 
 
-class GetAlbumUseCase @Inject constructor(
-    private val repository: AlbumRepository
+class GetPhotoUseCase @Inject constructor(
+    private val repository: RemoteRepository
 ) {
-    operator fun invoke(): Flow<Resource<List<Album>>> = flow {
+    operator fun invoke(albumId: Int): Flow<Resource<Photo>> = flow {
         try {
-            emit(Resource.Loading())
-            val rates = repository.getAlbums().map {
-                it.toAlbum()
-            }.toList()
-            emit(Resource.Success(rates))
+            val photo = repository.getPhotos(albumId).first().toPhoto()
+            emit(Resource.Success(photo))
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "Error getting data"))
         } catch (e: IOException) {
