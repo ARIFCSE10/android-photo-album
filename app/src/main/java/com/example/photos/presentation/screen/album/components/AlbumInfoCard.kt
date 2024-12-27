@@ -10,19 +10,30 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.photos.domain.entity.AlbumItemEntity
+import com.example.photos.presentation.screen.album.mockPhotoItems
 import com.skydoves.landscapist.glide.GlideImage
 
+/**
+ * Composable function to display information about an album item.
+ *
+ * @param albumItem The album item entity containing the photo and related data.
+ * @param modifier Optional Modifier to apply additional styling or layout constraints.
+ */
 @Composable
-fun AlbumInfoCard(photo: AlbumItemEntity, modifier: Modifier = Modifier) {
+fun AlbumInfoCard(albumItem: AlbumItemEntity, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -37,8 +48,8 @@ fun AlbumInfoCard(photo: AlbumItemEntity, modifier: Modifier = Modifier) {
             modifier = Modifier.padding(8.dp)
         ) {
             GlideImage(
-                imageModel = photo.photo?.thumbnailUrl ?: "",
-                contentDescription = photo.photo?.title ?: "--",
+                imageModel = albumItem.photo?.thumbnailUrl ?: "",
+                contentDescription = albumItem.photo?.title ?: "--",
                 modifier = Modifier
                     .size(100.dp)
                     .clip(RoundedCornerShape(8.dp))
@@ -51,20 +62,37 @@ fun AlbumInfoCard(photo: AlbumItemEntity, modifier: Modifier = Modifier) {
                     .padding(start = 8.dp)
             ) {
                 Text(
-                    text = photo.photo?.title ?: "",
-                    style = MaterialTheme.typography.titleLarge
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = photo.album.title,
+                    text = albumItem.photo?.title ?: "",
                     style = MaterialTheme.typography.titleMedium
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                HorizontalDivider(
+                    color = Color.Gray.copy(alpha = 0.2f),
+                    thickness = 1.dp,
+                    modifier = Modifier.padding(vertical = 2.dp)
+                )
                 Text(
-                    text = photo.user?.username ?: "",
-                    style = MaterialTheme.typography.bodyMedium
+                    text = albumItem.album.title,
+                    color = Color.Gray,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Medium
+                )
+                HorizontalDivider(
+                    color = Color.Gray.copy(alpha = 0.2f),
+                    thickness = 1.dp,
+                    modifier = Modifier.padding(vertical = 2.dp)
+                )
+                Text(
+                    text = albumItem.user?.username ?: "",
+                    color = Color.Gray,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AlbumInfoCardPreview() {
+    AlbumInfoCard(albumItem = mockPhotoItems.first())
 }

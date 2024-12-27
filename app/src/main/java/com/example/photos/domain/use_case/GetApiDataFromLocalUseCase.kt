@@ -13,10 +13,17 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-
+/**
+ * Use case for retrieving API data from local storage.
+ */
 class GetApiDataFromLocalUseCase @Inject constructor(
     private val localRepository: LocalRepository,
 ) {
+    /**
+     * Retrieves API data from local storage.
+     *
+     * @return A flow emitting a Resource indicating success or failure.
+     */
     operator fun invoke(): Flow<Resource<List<AlbumItemEntity>>> = flow {
         try {
             emit(Resource.Loading())

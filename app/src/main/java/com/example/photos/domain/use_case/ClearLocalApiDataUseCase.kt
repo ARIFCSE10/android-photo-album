@@ -10,10 +10,17 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-
+/**
+ * Use case for clearing local API data.
+ */
 class ClearLocalApiDataUseCase @Inject constructor(
     private val localRepository: LocalRepository,
 ) {
+    /**
+     * Clears the cache of local API data.
+     *
+     * @return A flow emitting a Resource indicating success or failure.
+     */
     operator fun invoke(): Flow<Resource<Unit>> = flow {
         try {
             localRepository.clearCache()

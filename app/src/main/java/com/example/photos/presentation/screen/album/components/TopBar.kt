@@ -10,6 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+/**
+ * Composable function to display the top bar for album screens.
+ *
+ * @param modifier Optional Modifier to apply additional styling or layout constraints.
+ */
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier
@@ -24,5 +29,3 @@ fun TopBar(
         )
     }
 }
-
-

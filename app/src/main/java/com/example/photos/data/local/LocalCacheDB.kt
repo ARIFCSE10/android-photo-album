@@ -6,7 +6,9 @@ import androidx.room.TypeConverters
 import com.example.photos.data.local.dao.LocalRepositoryDao
 import com.example.photos.domain.entity.AlbumItemEntity
 
-
+/**
+ * Room database for caching album data.
+ */
 @Database(
     entities = [AlbumItemEntity::class],
     version = 1,

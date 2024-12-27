@@ -2,7 +2,6 @@ package com.example.photos.domain.use_case
 
 import com.example.photos.common.Resource
 import com.example.photos.data.remote.dto.toAlbum
-import com.example.photos.data.remote.dto.toUser
 import com.example.photos.domain.model.Album
 import com.example.photos.domain.repository.RemoteRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,10 +10,17 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-
+/**
+ * Use case for retrieving albums.
+ */
 class GetAlbumsUseCase @Inject constructor(
     private val repository: RemoteRepository
 ) {
+    /**
+     * Retrieves a list of albums.
+     *
+     * @return A flow emitting a Resource indicating success or failure.
+     */
     operator fun invoke(): Flow<Resource<List<Album>>> = flow {
         try {
             emit(Resource.Loading())

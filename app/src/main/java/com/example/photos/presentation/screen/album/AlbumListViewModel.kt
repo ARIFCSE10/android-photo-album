@@ -19,6 +19,16 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel to manage the state and logic of the album list screen.
+ *
+ * @property getAlbumsUseCase Use case to fetch albums from the remote repository.
+ * @property getUserUseCase Use case to fetch users from the remote repository.
+ * @property getPhotoUseCase Use case to fetch photos from the remote repository.
+ * @property saveApiDataUseCase Use case to save API data to the local repository.
+ * @property clearLocalApiDataUseCase Use case to clear local API data.
+ * @property getApiDataFromLocalUseCase Use case to fetch API data from the local repository.
+ */
 @HiltViewModel
 class AlbumListViewModel @Inject constructor(
     private val getAlbumsUseCase: GetAlbumsUseCase,

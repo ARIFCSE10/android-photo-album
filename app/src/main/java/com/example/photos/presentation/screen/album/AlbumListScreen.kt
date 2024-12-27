@@ -31,6 +31,12 @@ import com.example.photos.presentation.screen.album.components.AlbumInfoCard
 import com.example.photos.presentation.screen.album.components.TopBar
 import com.example.photos.ui.theme.PhotosTheme
 
+/**
+ * Composable function to display the album list screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ * @param viewModel The view model to manage the state and logic of this screen.
+ */
 @Composable
 fun AlbumListScreen(
     navController: NavController,
@@ -84,7 +90,7 @@ fun AlbumListScreen(
                     items(
                         state.albums.size,
                         key = { index -> index }) { index ->
-                        AlbumInfoCard(photo = state.albums[index])
+                        AlbumInfoCard(albumItem = state.albums[index])
                     }
                 }
             }

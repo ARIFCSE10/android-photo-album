@@ -10,10 +10,18 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-
+/**
+ * Use case for retrieving photos.
+ */
 class GetPhotoUseCase @Inject constructor(
     private val repository: RemoteRepository
 ) {
+    /**
+     * Retrieves a photo by album ID.
+     *
+     * @param albumId The ID of the album to retrieve photos for.
+     * @return A flow emitting a Resource indicating success or failure.
+     */
     operator fun invoke(albumId: Int): Flow<Resource<Photo>> = flow {
         try {
             val photo = repository.getPhotos(albumId).first().toPhoto()
