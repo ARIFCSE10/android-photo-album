@@ -122,6 +122,9 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.compiler)
     ksp(libs.dagger.hilt.android.compiler)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
