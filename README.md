@@ -58,6 +58,21 @@ The app follows a clean architecture pattern with the following layers:
 To run the unit tests, navigate to the `app/src/test/java/com/example/photolibrary` directory and
 run the tests.
 
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="screenshots/1.png" width="200"/></td>
+    <td><img src="screenshots/2.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center">Album Screen</td>
+    <td align="center">Error Handling</td>
+  </tr>
+</table>
+
+
 ## Future Improvements
 
 - Implement UI testing.
