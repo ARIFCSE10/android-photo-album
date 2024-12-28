@@ -65,6 +65,7 @@ android {
 
 dependencies {
 
+    androidTestImplementation(libs.androidx.core.testing)
     //compose
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
@@ -88,8 +89,6 @@ dependencies {
 
     implementation(libs.androidx.ui.test.junit4.android)
     testImplementation(libs.junit)
-    testImplementation(libs.mockito.core)
-    testImplementation(libs.mockito.inline)
     //For runBlockingTest, CoroutineDispatcher etc.
     testImplementation(libs.kotlinx.coroutines.test)
     //For InstantTaskExecutorRule
@@ -114,7 +113,6 @@ dependencies {
     androidTestImplementation(libs.test.espresso.accessibility)
     androidTestImplementation(libs.test.idling.concurrent)
 
-    implementation(libs.mockito.kotlin)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.test)
 
@@ -145,4 +143,12 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     ksp(libs.androidx.room.compiler)
     implementation(kotlin("test"))
+
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
+    implementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlin.mockito.kotlin)
+
 }

@@ -31,22 +31,6 @@ The app follows a clean architecture pattern with the following layers:
 - **Data Layer:** Contains the data access logic, including the `PhotoApi`, `PhotoRepositoryImpl`,
   and data models.
 
-## Dependencies
-
-- `androidx.core:core-ktx`
-- `androidx.appcompat:appcompat`
-- `com.google.android.material:material`
-- `androidx.compose.ui:ui`
-- `androidx.compose.material:material`
-- `androidx.compose.ui:ui-tooling-preview`
-- `androidx.lifecycle:lifecycle-runtime-ktx`
-- `androidx.activity:activity-compose`
-- `com.squareup.retrofit2:retrofit`
-- `com.github.bumptech.glide:glide`
-- `com.google.dagger:hilt-android`
-- `com.google.dagger:hilt-android-compiler`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-android`
-
 ## Getting Started
 
 1. Clone the repository.
