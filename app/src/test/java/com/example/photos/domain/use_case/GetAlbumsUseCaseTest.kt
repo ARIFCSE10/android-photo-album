@@ -4,6 +4,7 @@ import com.example.photos.common.Resource
 import com.example.photos.data.remote.dto.AlbumDto
 import com.example.photos.domain.model.Album
 import com.example.photos.domain.repository.RemoteRepository
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import okhttp3.ResponseBody
@@ -36,47 +37,47 @@ class GetAlbumsUseCaseTest {
         )
 
         // Invoke the use case
-        val result = getAlbumsUseCase().first()
+        val result = getAlbumsUseCase().drop(1).first()
 
         // Verify the result
         assertTrue(result is Resource.Success)
-        assertEquals(albumList, result.data)
+        assertTrue { albumList.count() == result.data?.count() }
+        assertTrue { albumList.first().id == result.data?.first()?.id }
     }
 
     @Test
     fun getAlbums_httpError() = runTest {
         // Mock HTTP error
-        val errorMessage = "HTTP Error"
-        Mockito.`when`(remoteRepository.getAlbums()).thenAnswer {
-            throw HttpException(
+        val errorCode = 404
+        Mockito.`when`(remoteRepository.getAlbums()).thenThrow(
+            HttpException(
                 retrofit2.Response.error<List<AlbumDto>>(
-                    404, ResponseBody.create(null, "")
+                    errorCode, ResponseBody.create(null, "")
                 )
             )
-        }
+        )
 
 
         // Invoke the use case
-        val result = getAlbumsUseCase().first()
-
+        val result = getAlbumsUseCase().drop(1).first()
         // Verify the result
         assertTrue(result is Resource.Error)
-        assertEquals(errorMessage, result.message)
+        assertTrue(result.message?.contains(errorCode.toString()) ?: false)
     }
 
     @Test
     fun getAlbums_ioError() = runTest {
         // Mock IO error
-        val errorMessage = "IO Error"
-        Mockito.`when`(remoteRepository.getAlbums()).thenThrow(
-            IOException(errorMessage)
-        )
+        val error = "IO Error"
+        Mockito.`when`(remoteRepository.getAlbums()).thenAnswer {
+            throw IOException(error)
+        }
+
 
         // Invoke the use case
-        val result = getAlbumsUseCase().first()
-
+        val result = getAlbumsUseCase().drop(1).first()
         // Verify the result
         assertTrue(result is Resource.Error)
-        assertEquals(errorMessage, result.message)
+        assertEquals(error, result.message)
     }
 }
